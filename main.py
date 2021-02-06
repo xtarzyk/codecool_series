@@ -3,6 +3,8 @@ from data import queries
 import math
 from dotenv import load_dotenv
 
+ROWS_PER_PAGE = 15
+
 load_dotenv()
 app = Flask('codecool_series')
 
@@ -16,6 +18,17 @@ def index():
 def design():
     return render_template('design.html')
 
+
+
+@app.route('/shows/most-rated')
+@app.route('/shows/most-rated/<int:page_number>')
+@app.route('/shows/order-by-<order_by>')
+@app.route('/shows/order-by-<order_by>/<int:page_number>')
+@app.route('/shows/order-by-<order_by>-<order_direction>')
+@app.route('/shows/order-by-<order_by>-<order_direction>/<int:page_number>')
+def shows(order_by='rating', order_direction='DESC', page_number=1):
+    most_rated_shows = queries.display_shows(order_by=order_by, order_direction=order_direction, limit=ROWS_PER_PAGE, offset=ROWS_PER_PAGE*(page_number-1))
+    return render_template('shows.html', shows=most_rated_shows)
 
 def main():
     app.run(debug=False)
