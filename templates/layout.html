@@ -31,6 +31,7 @@
     <!-- page specific styling -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style/pagination.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='style/detailed-view.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/modal.css') }}">
 </head>
 
 <div id="body-wrapper">
@@ -41,6 +42,7 @@
             Codecool Series Database
         </a>
         <div id="header-auth">
+            <button type="button" id="most-rated" onclick="window.location.href='{{ url_for('shows') }}';">Most rated shows</button>
             <button type="button" id="bt_register">Register</button>
             <button type="button" id="bt_login">Login</button>
         </div>
@@ -59,4 +61,3 @@
     <div class="light-blue-layer"></div>
 </div>
 </body>
-</html>

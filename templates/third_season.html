@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+{% block title %}Third Season{% endblock %}
+{% block content %}
+
+    <button type="button" id="filter-rating">Filter rating</button>
+    <div class="card">
+    <h2>Seasons</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Season title</th>
+                <th>Rating</th>
+                <th>Overview</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for season in seasons %}
+            <tr>
+                <td>{{ season.title }}</td>
+                <td>{{ season.season_name }}</td>
+                <td>{{ season.rating }}</td>
+                <td>{{ season.overview }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+<div class="modal">
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+      <form action="{{ url_for("filter_rating") }}">
+        <label for="filter">Enter rating: </label>
+        <input type="number" step="0.01" id="filter" name="filter"><br><br>
+        <input type="submit" value="Save" id="save">
+      </form>
+  </div>
+</div>
+<script src="{{ url_for("static", filename="/js/modal.js") }}" defer></script>
+{% endblock %}
